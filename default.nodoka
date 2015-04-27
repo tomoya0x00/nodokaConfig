@@ -443,6 +443,48 @@ window	AndroidStudio /studio64\.exe/ : KeymapDefault
  key C-W			= A-X					# CUT
  key M-W			= A-C					# COPY
 
+# IntelliJ IDEA ....................................................................
+
+ keyseq	$IntelliJ/cancel		= Left Right
+
+keymap2	IntelliJ : KeymapDefault = $IntelliJ/cancel &KeymapWindow
+
+keymap2	IntelliJ
+ key Home		= S-C-Home	&Prefix(IntelliJ)	# 文頭
+ key End		= S-C-End	&Prefix(IntelliJ)	# 文末
+ key C-A		= S-Home	&Prefix(IntelliJ)	# 行頭
+ key C-B		= S-Left	&Prefix(IntelliJ)	# ←
+ key M-B		= S-C-Left	&Prefix(IntelliJ)	# ←(単語)
+ key C-E		= S-End		&Prefix(IntelliJ)	# 行末
+ key C-F		= S-Right	&Prefix(IntelliJ)	# →
+ key M-F		= S-C-Right	&Prefix(IntelliJ)	# →(単語)
+ key C-G		= $IntelliJ/cancel &Undefined		# キャンセル
+ key C-N		= S-Down	&Prefix(IntelliJ)	# ↓
+ key C-P		= S-Up		&Prefix(IntelliJ)	# ↑
+ if ( !ZXCV ) key C-V	= S-Next	&Prefix(IntelliJ)	# 次頁
+ key M-V		= S-Prior	&Prefix(IntelliJ)	# 前頁
+ key C-W		= A-X Left Right			# CUT
+ key M-W		= A-C Left Right			# COPY
+ key C-D		= Delete					# 削除
+ key S-M-Comma		= S-C-Home	&Prefix(IntelliJ)	# 文頭
+ key S-M-Period		= S-C-End	&Prefix(IntelliJ)	# 文末
+ key C-B		= S-Left	&Prefix(IntelliJ)	# ←
+ key C-U		= S-Up		&Prefix(IntelliJ)	# ↑
+ key C-F		= S-Right	&Prefix(IntelliJ)	# →
+ key C-N		= S-Down	&Prefix(IntelliJ)	# ↓
+ if ( MAP-ESCAPE-TO-META )
+   key Escape		= &Prefix(IntelliJEscape) &EditNextModifier(M-)
+   if ( KBD109 ) and ( ! KBD104on109 )
+     key 半角/全角	= &Prefix(IntelliJEscape) &EditNextModifier(M-)
+     key E0半角/全角	= &Prefix(IntelliJEscape) &EditNextModifier(M-)
+   endif
+ endif
+
+window	IntelliJIDEA /idea\.exe/ : KeymapDefault
+ key C-Atmark		= &Prefix(IntelliJ)		# Mark
+ key C-W			= A-X					# CUT
+ key M-W			= A-C					# COPY
+
 # Personal Dictionary ........................................................
 # http://member.nifty.ne.jp/TaN/
 

@@ -401,6 +401,48 @@ window  NetscapeNavigator /Netscape\.exe:/ : Global
 #window  Mozilla /:MozillaWindowClass$/ : EmacsEdit
 window	Firefox /:MozillaWindowClass$/ : KeymapDefault
 
+# AndroidStudio ....................................................................
+
+ keyseq	$ASMark/cancel		= Left Right
+
+keymap2	ASMark : KeymapDefault = $ASMark/cancel &KeymapWindow
+
+keymap2	ASMark
+ key Home		= S-C-Home	&Prefix(ASMark)	# 文頭
+ key End		= S-C-End	&Prefix(ASMark)	# 文末
+ key C-A		= S-Home	&Prefix(ASMark)	# 行頭
+ key C-B		= S-Left	&Prefix(ASMark)	# ←
+ key M-B		= S-C-Left	&Prefix(ASMark)	# ←(単語)
+ key C-E		= S-End		&Prefix(ASMark)	# 行末
+ key C-F		= S-Right	&Prefix(ASMark)	# →
+ key M-F		= S-C-Right	&Prefix(ASMark)	# →(単語)
+ key C-G		= $ASMark/cancel &Undefined		# キャンセル
+ key C-N		= S-Down	&Prefix(ASMark)	# ↓
+ key C-P		= S-Up		&Prefix(ASMark)	# ↑
+ if ( !ZXCV ) key C-V	= S-Next	&Prefix(ASMark)	# 次頁
+ key M-V		= S-Prior	&Prefix(ASMark)	# 前頁
+ key C-W		= A-X Left Right			# CUT
+ key M-W		= A-C Left Right			# COPY
+ key C-D		= Delete					# 削除
+ key S-M-Comma		= S-C-Home	&Prefix(ASMark)	# 文頭
+ key S-M-Period		= S-C-End	&Prefix(ASMark)	# 文末
+ key C-B		= S-Left	&Prefix(ASMark)	# ←
+ key C-U		= S-Up		&Prefix(ASMark)	# ↑
+ key C-F		= S-Right	&Prefix(ASMark)	# →
+ key C-N		= S-Down	&Prefix(ASMark)	# ↓
+ if ( MAP-ESCAPE-TO-META )
+   key Escape		= &Prefix(ASMarkEscape) &EditNextModifier(M-)
+   if ( KBD109 ) and ( ! KBD104on109 )
+     key 半角/全角	= &Prefix(ASMarkEscape) &EditNextModifier(M-)
+     key E0半角/全角	= &Prefix(ASMarkEscape) &EditNextModifier(M-)
+   endif
+ endif
+
+window	AndroidStudio /studio64\.exe/ : KeymapDefault
+ key C-Atmark		= &Prefix(ASMark)		# Mark
+ key C-W			= A-X					# CUT
+ key M-W			= A-C					# COPY
+
 # Personal Dictionary ........................................................
 # http://member.nifty.ne.jp/TaN/
 

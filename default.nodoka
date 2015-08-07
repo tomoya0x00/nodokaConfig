@@ -28,8 +28,7 @@ keyseq $WindowClose = A-F4
 #
 
 keymap Global
- key *IC-C-Yen			= $ToggleIME		# IME ON/OFF ‚ğ‚·‚éƒL[‚Ìw’è
- key *IC-C-Space		= $ToggleIME		# IME ON/OFF ‚ğ‚·‚éƒL[‚Ìw’è
+ key *IC-C-Yen          = $ToggleIME                                    	# IME ON/OFF ‚ğ‚·‚éƒL[‚Ìw’è
  key C-S-M     C-A-M    = Applications                                  	# ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒL[
  key C-S-L     C-A-L    = &WindowLower                                  	# ƒEƒBƒ“ƒhƒE‚ğˆê”Ô‰º‚Ö
  key C-S-R     C-A-R    = &WindowRaise                                  	# ƒEƒBƒ“ƒhƒE‚ğˆê”Ôã‚Ö
@@ -76,18 +75,18 @@ keymap Global
    key C-S-V            = &WindowMoveVisibly                            	# ƒEƒBƒ“ƒhƒE‚ğŒ©‚¦‚éˆÊ’u‚ÖˆÚ“®
  endif
 
-# if ( KBD109 ) and ( ! KBD104on109 )
-#   key *”¼Šp/‘SŠp   = *Esc                  # Esc ‚Æ”¼Šp/‘SŠp‚Ì“ü‚ê‘Ö‚¦
-#   key *Esc             = *”¼Šp/‘SŠp                                        	#       V
-# endif
+ if ( KBD109 ) and ( ! KBD104on109 )
+   key *”¼Šp/‘SŠp   = *Esc                  # Esc ‚Æ”¼Šp/‘SŠp‚Ì“ü‚ê‘Ö‚¦
+   key *Esc             = *”¼Šp/‘SŠp                                        	#       V
+ endif
 
-# if ( KBD109 )
-#   mod control += ‰p”                                                    	# ‰p”‚ğ Control ‚É
-#   key *‰p”              = *LControl                                     	#       V
-# else
-#   mod control += CapsLock                                              	# CapsLock ‚ğ Control ‚É
-#   key *CapsLock        = *LControl                                     	#       V
-# endif
+ if ( KBD109 )
+   mod control += ‰p”                                                    	# ‰p”‚ğ Control ‚É
+   key *‰p”              = *LControl                                     	#       V
+ else
+   mod control += CapsLock                                              	# CapsLock ‚ğ Control ‚É
+   key *CapsLock        = *LControl                                     	#       V
+ endif
 
  if ( GANA )
    if ( KBD109 )
@@ -116,19 +115,6 @@ keymap Global
      key ”¼Šp/‘SŠp  = &Prefix(GlobalEscape) &EditNextModifier(M-)
    endif
  endif
- if ( USE104 )                                                           # Ctrl <-> ‰p” (109)
-    mod control -= LCtrl                                                # Ctrl <-> CapsLock (104)
-    key *LCtrl= *Caps
-    mod control += !Caps
-    key *Caps= *LCtrl
- else
-#    mod control -= LCtrl
-#    key *LCtrl= *‰p”
-    def subst *‰p” = *‰p”                                                 #  def subst *‰p”‚ÌÄ’è‹`  from http://d.hatena.ne.jp/kaosf/20101120
-    mod control += !‰p”
-    key *‰p” = *LCtrl
- endif
-
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -136,18 +122,21 @@ keymap Global
 #
 
 keymap  KeymapDefault = &Default
-if ( USE104 )                                                           # Ctrl <-> ‰p” (109)
-    mod control -= LCtrl                                                # Ctrl <-> CapsLock (104)
-    key *LCtrl= *Caps
-    mod control += !Caps
-    key *Caps= *LCtrl
-else
-    mod control -= LCtrl
-    key *LCtrl= *‰p”
-    def subst *‰p” = *‰p”                                                 #  def subst *‰p”‚ÌÄ’è‹`  from http://d.hatena.ne.jp/kaosf/20101120
-    mod control += !‰p”
-    key *‰p” = *LCtrl
-endif
+ if ( KBD109 )
+   mod control += ‰p”                                                    	# ‰p”‚ğ Control ‚É
+   key *‰p”              = *LControl                                     	#       V
+ else
+   mod control += CapsLock                                              	# CapsLock ‚ğ Control ‚É
+   key *CapsLock        = *LControl                                     	#       V
+ endif
+ if ( GANA )
+   if ( KBD109 )
+     mod alt += !!–³•ÏŠ·                                                   	# –³•ÏŠ·‚ğ Alt ‚É
+     key *–³•ÏŠ·   = *–³•ÏŠ·                                                  	#       V
+     key A-–³•ÏŠ·  = –³•ÏŠ·                                                   	#       V
+     key IC-A-K         = –³•ÏŠ·                                           	# IME ‚Å•ÏŠ·’†‚Ì A-K ‚Í–³•ÏŠ·
+   endif
+ endif
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -180,7 +169,9 @@ keymap2 GeneralC-X : EmacsC-X
 # key C-C               = $WindowClose                                  	# I—¹(X)
 
 window EmacsGlobal ( // || // ) : EmacsEdit
+#window EmacsGlobal ( // || // ) :  KeymapDefault
  key C-X = &Prefix(GeneralC-X)
+ key C-Space = C-Space
 
 # ƒ_ƒCƒAƒƒOƒ{ƒbƒNƒX .........................................................
 
@@ -526,7 +517,7 @@ keymap2 WaffleMark : Waffle = $WaffleMark/cancel &KeymapParent
 keymap  Waffle
  key Home               = &Default                                      	# •¶“ª
  key End                = &Default                                      	# •¶––
- key C-Space            = &Prefix(WaffleMark)                           	# Mark
+# key C-Space            = &Prefix(WaffleMark)                           	# Mark
  key C-A                = &Default                                      	# s“ª
  key C-B                = &Default                                      	# ©
  key C-C                = &Default                                      	# (Waffle Prefix)

@@ -171,7 +171,6 @@ keymap2 GeneralC-X : EmacsC-X
 window EmacsGlobal ( // || // ) : EmacsEdit
 #window EmacsGlobal ( // || // ) :  KeymapDefault
  key C-X = &Prefix(GeneralC-X)
- key C-Space = C-Space
 
 # ダイアログボックス .........................................................
 

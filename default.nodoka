@@ -475,6 +475,12 @@ window	IntelliJIDEA /idea\.exe/ : KeymapDefault
  key C-W			= A-X					# CUT
  key M-W			= A-C					# COPY
 
+window	WebStorm /webstorm\.exe/ : KeymapDefault
+ key C-Atmark		= &Prefix(IntelliJ)		# Mark
+ key C-W			= A-X					# CUT
+ key M-W			= A-C					# COPY
+
+
 # Personal Dictionary ........................................................
 # http://member.nifty.ne.jp/TaN/
 

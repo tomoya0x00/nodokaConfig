@@ -389,7 +389,7 @@ window  NetscapeNavigator /Netscape\.exe:/ : Global
 # http://www.mozilla.org/
 
 #window  Mozilla /:MozillaWindowClass$/ : EmacsEdit
-window	Firefox /:MozillaWindowClass$/ : KeymapDefault
+window	Firefox /:MozillaWindowClass$/ : EmacsEdit
 
 # AndroidStudio ....................................................................
 
@@ -471,6 +471,11 @@ keymap2	IntelliJ
  endif
 
 window	IntelliJIDEA /idea\.exe/ : KeymapDefault
+ key C-Atmark		= &Prefix(IntelliJ)		# Mark
+ key C-W			= A-X					# CUT
+ key M-W			= A-C					# COPY
+
+window	IntelliJIDEA /idea64\.exe/ : KeymapDefault
  key C-Atmark		= &Prefix(IntelliJ)		# Mark
  key C-W			= A-X					# CUT
  key M-W			= A-C					# COPY
